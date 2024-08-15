@@ -13,5 +13,4 @@ This repository documents my progress and learnings from the **"Angular - The Co
 ## Notes
 
 - The repository will be continuously updated as I progress through the course.
-- At the end of the course, this README will be updated to reflect the complete list of concepts and skills I've learned.
 

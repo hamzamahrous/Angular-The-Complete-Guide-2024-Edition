@@ -23,7 +23,6 @@
 ***
 - The last option is the **Static Side Generation (SSG)** .. it's a mix between the two previous approaches as **Angular app routes are pre-rendered at build time** .. so **Browser receives finished, rendered pages** .. then **Web app hydrated and becomes as a SPA** .. also a **Dynamic web server is required** and also there's potential disadvantages as **No dynamic server-side data fetching**.
 
- ![[Pasted image 20241114112333.png]]
 ***
 - To configure and use SSG first you also would run `ng add @angular/ssr`.
 

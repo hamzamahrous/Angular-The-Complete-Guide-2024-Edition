@@ -33,7 +33,7 @@ export class SafeLinkDirective {
 
 - `<ng-template>` is used to wrap some content that will show up eventually but not at the beginning .. and we can use with it the directive directly without the asterisk .. as if you used the asterisk `<ng-template>` will be added under the hood ... and also it will act like it's binded so if you want to add string you would have to quote it again.
 
-  ```TS nums
+```TS nums
 <ng-template appAuth="admin">
      <p>Only Admins Should See This!</p>
 </ng-template>

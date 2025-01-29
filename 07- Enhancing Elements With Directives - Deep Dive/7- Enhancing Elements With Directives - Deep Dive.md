@@ -41,11 +41,14 @@ export class SafeLinkDirective {
 
 - Also we need to inject two things `TemplateRef, ViewContainerRef` .. the `templateRef` will hold a reference to the template which uses the directive .. and the `ViewContainerRef` will hold a reference to the place in the DOM where this template is being used.
 
-  `effect(() => {`
-      `if (this.userType() === this.authService.activePermission()) {`
-        `this.viewContainerRef.createEmbeddedView(this.templateRef);`
-      `} else {`
-        `this.viewContainerRef.clear();`
-      `}})`
+```TS
+  effect(() => {
+      if (this.userType() === this.authService.activePermission()) {
+         this.viewContainerRef.createEmbeddedView(this.templateRef);
+      } else {
+         this.viewContainerRef.clear();
+      }
+  })
+```
 ***
 - When we have a directive that should corporates with another directives or components there's no need for repetition and adding them manually for each one .. instead we could use `hostDirectives: []` inside the component's decorator configurations and add the directives here and they will be added automatic .. and also you could combine it with the regular way of adding them manually.

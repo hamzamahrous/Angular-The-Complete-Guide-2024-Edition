@@ -1,21 +1,25 @@
 
 - In this section we will dive deep into directives .. and we will learn about **Directives vs Components** .. **Attribute directives** .. **Structural directives** .. **Built-in directives** .. **Building custom directives**.
 ****
-- We can say that the directives are enhancements that are added to the elements to have more features and we can say it's a component without template.
+- We can say that the directives are enhancements that are added to the elements to have more features .. we can say it's a component without template.
 ***
 - `ngModel` is an attribute directive ( It's called attribute directive as it's added like attributes ) and it allows us to perform **two-way binding** .. and it also adds dynamically managed CSS classes.
 ***
 - `*ngIf="exp"` is an example for the built-in structural directives .. and **It's called structural because it changes the DOM structure** ... and note that now there's no structural directives that's used in modern angular.
 
- `import { Directive } from '@angular/core';`
+```TS nums
+import { Directive } from '@angular/core';
  
- `@Directive({`
-  `selector: 'a[appSafeLink]',`
-  `standalone: true,`
-`})`
- `export class SafeLinkDirective {`
-  `constructor() {`
-  `console.log('SafeLinkDirective Is Active!'); }}`
+@Directive({
+  selector: 'a[appSafeLink]',
+  standalone: true,
+})
+export class SafeLinkDirective {
+  constructor() {
+  console.log('SafeLinkDirective Is Active!'); 
+  }
+}
+```
 
 - This is how we can build a custom directive and note this is an attribute directive as it's not manipulating the DOM so it's not structural and also note that it also should be imported before you use it inside a component.
 ***
@@ -29,9 +33,11 @@
 
 - `<ng-template>` is used to wrap some content that will show up eventually but not at the beginning .. and we can use with it the directive directly without the asterisk .. as if you used the asterisk `<ng-template>` will be added under the hood ... and also it will act like it's binded so if you want to add string you would have to quote it again.
 
-  `<ng-template appAuth="admin">`
-       `<p>Only Admins Should See This!</p>`
-  `</ng-template>`
+  ```TS nums
+<ng-template appAuth="admin">
+     <p>Only Admins Should See This!</p>
+</ng-template>
+```
 
 - Also we need to inject two things `TemplateRef, ViewContainerRef` .. the `templateRef` will hold a reference to the template which uses the directive .. and the `ViewContainerRef` will hold a reference to the place in the DOM where this template is being used.
 

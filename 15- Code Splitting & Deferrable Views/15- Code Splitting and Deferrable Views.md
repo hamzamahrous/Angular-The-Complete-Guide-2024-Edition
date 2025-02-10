@@ -5,24 +5,30 @@
 ***
 - Angular offers two main approaches for implementing lazy loading .. but these two approaches aren't alternative to each other .. instead you can apply both of them (you don't have to but you can).
 ***
-- The first approach is `Route-based Lazy Loading` which means that you don't load some routes(components) except when they are needed.
+- The first approach is `Route-based Lazy Loading` which means that you don't load some routes (components) except when they are needed.
 
 - You should choose carefully which route to make it lazily loaded .. as there's no meaning to make it a route that will be activated initially .. this might make the application even more slower as will be two requests.
 
-  `{`
-    `path: 'tasks', // <your-domain>/users/<uid>/tasks`
-    `component: TasksComponent,`
-    `runGuardsAndResolvers: 'always',`
-    `resolve: {`
-      `userTasks: resolveUserTasks,`
-    `},`
-  `}` ... this was the code initially for the `'tasks` route now to make it lazily loaded you should add this instead of the `component` property.
+```TS
+  {
+    path: 'tasks', // <your-domain>/users/<uid>/tasks
+    component: TasksComponent,
+    runGuardsAndResolvers: 'always',
+    resolve: {
+      userTasks: resolveUserTasks,
+    },
+  } 
+```
 
-    `loadComponent: () => {`
-      `return import('../tasks/tasks.component').then(` .. returns a promise and you should use `then` like this to adjust the returned data.
-        `(mod) => mod.TasksComponent`
-      `);`
-    `},` .. Now this will make the component loaded lazily .. note that if you imported the component initially using the normal import it's eagerly loaded like the initial case .. but now it will only be imported when this function gets excuted.
+This was the code initially for the `'tasks` route now to make it lazily loaded you should add this instead of the `component` property.
+
+```TS
+  loadComponent: () => {
+      return import('../tasks/tasks.component').then((mod) => mod.TasksComponent);
+}, // Note that it returns a promise.
+```
+    
+- Now this will make the component loaded lazily .. note that if you imported the component initially using the normal import it's eagerly loaded like the initial case .. but now it will only be imported when this function gets excuted.
 
 - Note that if you are importing anything else from the same file then the all file is loaded and you aren't using the lazy loading properly.
 ***
@@ -47,7 +53,7 @@
 `@defer (on viewport) {` .. by this it will be triggered when the user can see it
    `<app-offer-preview />`
    `} @placeholder {` .. you need to add a place holder.
-   `<p>We have an offer...</p>`
+   `<p> We have an offer ... </p>`
 `}`
 ***
 - You can use `on interaction` trigger to only load the component when the user interacts with the `placeholder` (click on it) .. also you can add a prefetching trigger.
